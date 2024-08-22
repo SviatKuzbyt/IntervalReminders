@@ -30,13 +30,4 @@ class CardsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_cards, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val test = view.findViewById<TextView>(R.id.test)
-        viewModel.test.observe(viewLifecycleOwner){
-            test.text = it.toString()
-        }
-
-    }
 }
