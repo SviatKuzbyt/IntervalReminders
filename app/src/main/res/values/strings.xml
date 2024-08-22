@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Interval reminders</string>
+    <string name="repeat">Repeat</string>
+    <string name="cards">Cards</string>
+    <string name="add_card">Add card</string>
+</resources>
