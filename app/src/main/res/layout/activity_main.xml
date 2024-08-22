@@ -16,7 +16,7 @@
         android:drawableTop="@drawable/remind_blue_ic"
         android:drawablePadding="8dp"
         android:text="@string/repeat"
-        android:textAppearance="@style/blue_button"
+        android:textAppearance="@style/text_blue_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -30,7 +30,7 @@
         android:drawableTop="@drawable/cards_ic"
         android:drawablePadding="8dp"
         android:text="@string/cards"
-        android:textAppearance="@style/gray_button"
+        android:textAppearance="@style/text_gray_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addButton" />

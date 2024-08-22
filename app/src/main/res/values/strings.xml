@@ -3,4 +3,5 @@
     <string name="repeat">Repeat</string>
     <string name="cards">Cards</string>
     <string name="add_card">Add card</string>
+    <string name="repeat_today">Repeat today</string>
 </resources>
