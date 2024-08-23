@@ -1,8 +1,6 @@
 package ua.sviatkuzbyt.intervalreminders.ui.fragments
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ua.sviatkuzbyt.intervalreminders.R
@@ -51,11 +48,6 @@ class AddFragment: BottomSheetDialogFragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     private fun save(){
         lifecycleScope.launch(Dispatchers.IO){
             try {
@@ -90,5 +82,10 @@ class AddFragment: BottomSheetDialogFragment() {
         dates.forEach {
             dao.addRepeat(RepeatEntity(0, it, cardId))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
