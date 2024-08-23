@@ -5,4 +5,8 @@
     <string name="add_card">Add card</string>
     <string name="repeat_today">Repeat today</string>
     <string name="all_cards">All cards</string>
+    <string name="new_card">New card</string>
+    <string name="enter_a_name">Enter a name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>

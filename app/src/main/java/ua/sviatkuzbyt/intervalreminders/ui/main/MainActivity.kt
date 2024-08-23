@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.ActivityMainBinding
+import ua.sviatkuzbyt.intervalreminders.ui.fragments.AddFragment
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.repeat.RepeatFragment
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.cardsButton.setOnClickListener {
             viewModel.setFragment(2)
+        }
+        binding.addButton.setOnClickListener {
+            val addFragment = AddFragment()
+            addFragment.show(supportFragmentManager, addFragment.tag)
         }
     }
 
