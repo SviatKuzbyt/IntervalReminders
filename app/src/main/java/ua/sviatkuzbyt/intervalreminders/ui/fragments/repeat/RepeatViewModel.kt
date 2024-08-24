@@ -1,6 +1,7 @@
 package ua.sviatkuzbyt.intervalreminders.ui.fragments.repeat
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ class RepeatViewModel(application: Application) : AndroidViewModel(application) 
     private val repository = RepeatRepository(application)
 
     init {
+        Log.v("vmfe", "init repeat")
         load()
     }
 
