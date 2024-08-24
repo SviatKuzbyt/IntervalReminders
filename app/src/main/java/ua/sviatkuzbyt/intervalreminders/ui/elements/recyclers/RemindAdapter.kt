@@ -13,15 +13,30 @@ import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
 open class RemindAdapter(
     private val dataSet: MutableList<CardData>,
     private val action: RecyclerAction
-) : RecyclerView.Adapter<RemindAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     protected open val removeButtonBackground = R.drawable.done_ic
+    protected open val emptyTextId = R.string.no_repeats
+    protected open val emptyIconId = R.drawable.done_big_ic
+
+    private val EMPTY_VIEW = 0
+    private val CONTENT_VIEW = 1
+
+    inner class EmptyStateViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val emptyItemText = view.findViewById<TextView>(R.id.emptyItemText)
+        private val emptyItemIcon = view.findViewById<View>(R.id.emptyItemIcon)
+
+        fun bind(){
+            emptyItemText.setText(emptyTextId)
+            emptyItemIcon.setBackgroundResource(emptyIconId)
+        }
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val text = view.findViewById<TextView>(R.id.recyclerItemText)
         private val removeButton = view.findViewById<Button>(R.id.recyclerItemButton)
 
-        fun bind(data: CardData){
+         fun bind(data: CardData){
             removeButton.setBackgroundResource(removeButtonBackground)
             text.text = data.name
 
@@ -37,17 +52,31 @@ open class RemindAdapter(
         action.removeAction(id)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.recycler_item, viewGroup, false)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == CONTENT_VIEW){
+            val view = LayoutInflater.from(viewGroup.context)
+                .inflate(R.layout.recycler_item, viewGroup, false)
+            ViewHolder(view)
+        } else {
+            val view = LayoutInflater.from(viewGroup.context)
+                .inflate(R.layout.empty_item, viewGroup, false)
+            EmptyStateViewHolder(view)
+        }
 
-        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        viewHolder.bind(dataSet[position])
+    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
+        if(viewHolder is ViewHolder)
+            viewHolder.bind(dataSet[position])
+        else if(viewHolder is EmptyStateViewHolder)
+            viewHolder.bind()
     }
 
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount(): Int {
+        return if (dataSet.isEmpty()) 1 else dataSet.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (dataSet.isEmpty()) EMPTY_VIEW else CONTENT_VIEW
+    }
 }

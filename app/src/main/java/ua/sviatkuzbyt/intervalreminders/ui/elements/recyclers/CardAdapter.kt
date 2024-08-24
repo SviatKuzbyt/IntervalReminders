@@ -20,6 +20,8 @@ class CardAdapter(
     )
 
     override val removeButtonBackground = R.drawable.delete_ic
+    override val emptyTextId = R.string.no_cards
+    override val emptyIconId = R.drawable.add_big_ic
 
     override fun remove(position: Int, id: Long) {
         removePosition = position
