@@ -1,49 +1,29 @@
 package ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import android.content.Context
+import android.util.Log
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
+import ua.sviatkuzbyt.intervalreminders.ui.elements.ConfirmRemoveDialog
 import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
 
 class CardAdapter(
-    private val dataSet: MutableList<CardData>,
-    private val removeButtonBackground: Int,
-    private val action: RecyclerAction
-) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
+    dataSet: MutableList<CardData>,
+    action: RecyclerAction,
+    context: Context
+): RemindAdapter(dataSet, action) {
+    private var removePosition = -1
+    private var removeId = -1L
+    private val confirmRemoveDialog = ConfirmRemoveDialog(
+        {super.remove(removePosition, removeId)},
+        context
+    )
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val text = view.findViewById<TextView>(R.id.recyclerItemText)
-        private val removeButton = view.findViewById<Button>(R.id.recyclerItemButton)
+    override val removeButtonBackground = R.drawable.delete_ic
 
-        fun bind(data: CardData){
-            removeButton.setBackgroundResource(removeButtonBackground)
-            text.text = data.name
-
-            removeButton.setOnClickListener {
-                val position = adapterPosition
-                dataSet.removeAt(position)
-                notifyItemRemoved(position)
-                action.removeAction(data.id)
-            }
-        }
+    override fun remove(position: Int, id: Long) {
+        removePosition = position
+        removeId = id
+        confirmRemoveDialog.showWindow()
     }
-
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.recycler_item, viewGroup, false)
-
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        viewHolder.bind(dataSet[position])
-    }
-
-    override fun getItemCount() = dataSet.size
 }

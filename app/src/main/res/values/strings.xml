@@ -13,4 +13,8 @@
     <string name="saved">Saved</string>
     <string name="cant_load">Can\'t load data, sorry</string>
     <string name="cant_remove">Can\'t remove item, sorry</string>
+    <string name="delete">Delete card?</string>
+    <string name="delete_description">All reminders will also be deleted. You will not be able to recover them</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

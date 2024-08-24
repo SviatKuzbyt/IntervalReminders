@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentRepeatBinding
 import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
-import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.CardAdapter
+import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.RemindAdapter
 
 class RepeatFragment : Fragment(), RecyclerAction {
     private val viewModel: RepeatViewModel by viewModels()
@@ -33,8 +33,8 @@ class RepeatFragment : Fragment(), RecyclerAction {
         //init list
         binding.recyclerRepeat.layoutManager = LinearLayoutManager(context)
         viewModel.repeatCards.observe(viewLifecycleOwner){
-            binding.recyclerRepeat.adapter = CardAdapter(
-                it, R.drawable.done_ic, this
+            binding.recyclerRepeat.adapter = RemindAdapter(
+                it, this
             )
         }
 
