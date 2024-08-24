@@ -1,6 +1,6 @@
 package ua.sviatkuzbyt.intervalreminders.data.elements
 
-data class RepeatData(
-    val repeatId: Long,
+data class CardData(
+    val id: Long,
     val name: String
 )

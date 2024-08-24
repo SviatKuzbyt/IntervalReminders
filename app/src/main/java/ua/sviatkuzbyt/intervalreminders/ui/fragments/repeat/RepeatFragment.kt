@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.R
-import ua.sviatkuzbyt.intervalreminders.databinding.FragmentAddBinding
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentRepeatBinding
 import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
 import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.CardAdapter
@@ -18,7 +18,6 @@ class RepeatFragment : Fragment(), RecyclerAction {
 
     private var _binding: FragmentRepeatBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +29,18 @@ class RepeatFragment : Fragment(), RecyclerAction {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerRepeat.layoutManager = LinearLayoutManager(context)
 
+        //init list
+        binding.recyclerRepeat.layoutManager = LinearLayoutManager(context)
         viewModel.repeatCards.observe(viewLifecycleOwner){
             binding.recyclerRepeat.adapter = CardAdapter(
                 it, R.drawable.done_ic, this
             )
+        }
+
+        //show error messages
+        viewModel.message.observe(viewLifecycleOwner){
+            Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
         }
     }
 

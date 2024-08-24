@@ -30,10 +30,10 @@ class DataBaseTest {
 
     @Test
     fun removeCards(){
-        val removeId = dbDao.getCards()[0].cardId
+        val removeId = dbDao.getCards()[0].id
         dbDao.removeCard(removeId)
         val listResult = dbDao.getCards()
-        Assert.assertFalse(listResult.any { it.cardId == removeId })
+        Assert.assertFalse(listResult.any { it.id == removeId })
     }
 
     @Test

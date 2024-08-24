@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //set first fragment
+        //set first fragment and buttons
         if (savedInstanceState == null){
             supportFragmentManager.commit {
                 add(R.id.mainFragmentContainer, RepeatFragment(), "repeat")

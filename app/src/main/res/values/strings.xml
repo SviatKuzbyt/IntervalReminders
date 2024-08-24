@@ -11,4 +11,6 @@
     <string name="cancel">Cancel</string>
     <string name="save_error">Error save</string>
     <string name="saved">Saved</string>
+    <string name="cant_load">Can\'t load data, sorry</string>
+    <string name="cant_remove">Can\'t remove item, sorry</string>
 </resources>

@@ -9,14 +9,14 @@ import androidx.room.PrimaryKey
     foreignKeys = [
         ForeignKey(
             entity = CardEntity::class,
-            parentColumns = ["cardId"],
+            parentColumns = ["id"],
             childColumns = ["cardId"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
 data class RepeatEntity(
-    @PrimaryKey(autoGenerate = true) val repeatId: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long,
     val date: Long,
     val cardId: Long
 )

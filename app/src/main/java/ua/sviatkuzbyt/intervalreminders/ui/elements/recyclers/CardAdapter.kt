@@ -7,11 +7,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ua.sviatkuzbyt.intervalreminders.R
-import ua.sviatkuzbyt.intervalreminders.data.elements.RepeatData
+import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
 import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
 
 class CardAdapter(
-    private val dataSet: MutableList<RepeatData>,
+    private val dataSet: MutableList<CardData>,
     private val removeButtonBackground: Int,
     private val action: RecyclerAction
 ) : RecyclerView.Adapter<CardAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class CardAdapter(
         private val text = view.findViewById<TextView>(R.id.recyclerItemText)
         private val removeButton = view.findViewById<Button>(R.id.recyclerItemButton)
 
-        fun bind(data: RepeatData){
+        fun bind(data: CardData){
             removeButton.setBackgroundResource(removeButtonBackground)
             text.text = data.name
 
@@ -28,7 +28,7 @@ class CardAdapter(
                 val position = adapterPosition
                 dataSet.removeAt(position)
                 notifyItemRemoved(position)
-                action.removeAction(data.repeatId)
+                action.removeAction(data.id)
             }
         }
     }
