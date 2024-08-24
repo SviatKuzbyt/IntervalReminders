@@ -13,18 +13,23 @@ import ua.sviatkuzbyt.intervalreminders.ui.elements.SingleLiveEvent
 
 class CardsViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var _cards: MutableList<CardData>
-    val cards = MutableLiveData<MutableList<CardData>>()
     private val repository = CardsRepository(application)
-    val message = SingleLiveEvent<Int>()
 
-    init { load() }
+    val cards = MutableLiveData<MutableList<CardData>>()
+    val messageCards = SingleLiveEvent<Int>()
+    val messageAdd = SingleLiveEvent<Int>()
+
+    fun loadCards() {
+        if (!::_cards.isInitialized)
+            load()
+    }
 
     private fun load() = viewModelScope.launch(Dispatchers.IO){
         try {
             _cards = repository.load()
             cards.postValue(_cards)
         } catch (_: Exception){
-            message.postValue(R.string.cant_load)
+            messageCards.postValue(R.string.cant_load)
         }
     }
 
@@ -32,7 +37,20 @@ class CardsViewModel(application: Application) : AndroidViewModel(application) {
         try {
             repository.remove(id)
         } catch (_: Exception){
-            message.postValue(R.string.cant_remove)
+            messageCards.postValue(R.string.cant_remove)
+        }
+    }
+
+    fun add(name: String) = viewModelScope.launch(Dispatchers.IO){
+        try {
+            val id = repository.add(name)
+            if (::_cards.isInitialized){
+                _cards.add(0, CardData(id, name))
+                cards.postValue(_cards)
+            }
+            messageAdd.postValue(R.string.add_card)
+        } catch (_: Exception){
+            messageAdd.postValue(R.string.save_error)
         }
     }
 }

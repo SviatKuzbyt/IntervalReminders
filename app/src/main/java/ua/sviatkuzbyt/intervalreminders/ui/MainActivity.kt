@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.ActivityMainBinding
-import ua.sviatkuzbyt.intervalreminders.ui.fragments.AddFragment
+import ua.sviatkuzbyt.intervalreminders.ui.fragments.cards.AddFragment
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.cards.CardsFragment
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.repeat.RepeatFragment
 

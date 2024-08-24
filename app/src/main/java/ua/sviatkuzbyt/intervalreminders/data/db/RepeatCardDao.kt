@@ -11,7 +11,7 @@ interface RepeatCardDao{
     @Insert
     fun addCard(entity: CardEntity): Long
 
-    @Query("SELECT * FROM card")
+    @Query("SELECT * FROM card ORDER BY id DESC")
     fun getCards(): MutableList<CardData>
 
     @Query("DELETE FROM card WHERE id=:id")

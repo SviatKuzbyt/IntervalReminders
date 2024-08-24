@@ -1,7 +1,6 @@
 package ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers
 
 import android.content.Context
-import android.util.Log
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
 import ua.sviatkuzbyt.intervalreminders.ui.elements.ConfirmRemoveDialog
@@ -27,5 +26,11 @@ class CardAdapter(
         removePosition = position
         removeId = id
         confirmRemoveDialog.showWindow()
+    }
+
+    fun add(){
+        if (dataSet.size <= 1)
+            notifyItemRemoved(0)
+        notifyItemInserted(0)
     }
 }

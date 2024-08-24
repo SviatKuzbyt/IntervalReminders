@@ -11,7 +11,7 @@ import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
 import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
 
 open class RemindAdapter(
-    private val dataSet: MutableList<CardData>,
+    protected val dataSet: MutableList<CardData>,
     private val action: RecyclerAction
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
