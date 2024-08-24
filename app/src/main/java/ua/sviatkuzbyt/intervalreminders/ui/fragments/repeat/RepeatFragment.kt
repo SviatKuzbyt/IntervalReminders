@@ -42,6 +42,12 @@ class RepeatFragment : Fragment(), RecyclerAction {
         viewModel.message.observe(viewLifecycleOwner){
             Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
         }
+
+        binding.repeatRefresh.setColorSchemeResources(R.color.blue)
+        binding.repeatRefresh.setOnRefreshListener {
+            viewModel.load()
+            binding.repeatRefresh.isRefreshing = false
+        }
     }
 
     override fun onDestroyView() {

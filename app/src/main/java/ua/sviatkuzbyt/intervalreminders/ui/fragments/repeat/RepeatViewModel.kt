@@ -19,7 +19,7 @@ class RepeatViewModel(application: Application) : AndroidViewModel(application) 
 
     init { load() }
 
-    private fun load() = viewModelScope.launch(Dispatchers.IO){
+    fun load() = viewModelScope.launch(Dispatchers.IO){
         try {
             _repeatCards = repository.load()
             repeatCards.postValue(_repeatCards)
