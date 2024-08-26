@@ -14,6 +14,9 @@ class CardsRepository(private val context: Context)  {
     fun load() = dao.getCards()
 
     fun remove(cardId: Long){
+        dao.getRepeatsById(cardId).forEach {
+            scheduleNotification.cancel(it.toInt())
+        }
         dao.removeCard(cardId)
     }
 

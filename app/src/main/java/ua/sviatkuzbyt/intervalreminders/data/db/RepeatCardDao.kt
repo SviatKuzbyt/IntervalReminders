@@ -28,4 +28,7 @@ interface RepeatCardDao{
 
     @Query("DELETE FROM repeat WHERE id=:repeatId")
     fun removeRepeat(repeatId: Long)
+
+    @Query("SELECT id FROM repeat WHERE cardId=:cardId")
+    fun getRepeatsById(cardId: Long): List<Long>
 }

@@ -20,7 +20,7 @@ class ScheduleNotification(private val context: Context) {
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, convertLocalDateToMillis(date), pendingIntent)
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, convertLocalDateToMillis(date), pendingIntent)
     }
 
     fun cancel(id: Int) {

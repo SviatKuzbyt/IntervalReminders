@@ -30,7 +30,8 @@
             android:resource="@array/preloaded_fonts" />
         <receiver
             android:name=".data.notification.ReminderReceiver"
-            android:enabled="true" />
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>
