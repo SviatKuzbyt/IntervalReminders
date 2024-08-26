@@ -20,4 +20,6 @@
     <string name="no_repeats">Nothing to repeat</string>
     <string name="no_cards">Add new cards</string>
     <string name="repeat_card">Repeat the card</string>
+    <string name="no_permission">We won\'t send reminders without permission</string>
+    <string name="check_perrmision">You may not have authorized notifications</string>
 </resources>

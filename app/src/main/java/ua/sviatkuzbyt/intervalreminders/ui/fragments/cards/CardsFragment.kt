@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentCardsBinding
 import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.ui.elements.makeToast
 import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.CardAdapter
 
 class CardsFragment : Fragment(), RecyclerAction {
@@ -46,7 +47,7 @@ class CardsFragment : Fragment(), RecyclerAction {
 
         //show error messages
         viewModel.messageCards.observe(viewLifecycleOwner){
-            Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
+            makeToast(context, it)
         }
     }
 

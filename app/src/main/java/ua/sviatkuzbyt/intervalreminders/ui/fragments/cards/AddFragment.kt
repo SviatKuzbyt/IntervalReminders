@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentAddBinding
+import ua.sviatkuzbyt.intervalreminders.ui.elements.makeToast
 
 class AddFragment: BottomSheetDialogFragment() {
     private lateinit var viewModel: CardsViewModel
@@ -42,7 +42,7 @@ class AddFragment: BottomSheetDialogFragment() {
         }
 
         viewModel.messageAdd.observe(viewLifecycleOwner){
-            Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
+            makeToast(context, it)
             dismiss()
         }
     }

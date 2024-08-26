@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentRepeatBinding
 import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.ui.elements.makeToast
 import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.RemindAdapter
 
 class RepeatFragment : Fragment(), RecyclerAction {
@@ -40,7 +40,7 @@ class RepeatFragment : Fragment(), RecyclerAction {
 
         //show error messages
         viewModel.message.observe(viewLifecycleOwner){
-            Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
+            makeToast(context, it)
         }
 
         //update list

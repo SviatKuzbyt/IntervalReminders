@@ -1,11 +1,16 @@
 package ua.sviatkuzbyt.intervalreminders.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.ActivityMainBinding
+import ua.sviatkuzbyt.intervalreminders.ui.elements.makeToast
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.cards.AddFragment
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.cards.CardsFragment
 import ua.sviatkuzbyt.intervalreminders.ui.fragments.repeat.RepeatFragment
@@ -16,8 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //check and request for notification permission
+        notificationPermission()
 
         //set first fragment and buttons
         if (savedInstanceState == null){
@@ -82,4 +91,29 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         outState.putBoolean("isRepeat", isRepeatFragment)
     }
+
+    private fun notificationPermission(){
+        try {
+            if (
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission
+                    (this, Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_DENIED
+            ){
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        } catch (_: Exception){
+            makeToast(this, R.string.check_perrmision)
+        }
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            try {
+                if (!it)
+                    makeToast(this, R.string.no_permission)
+            } catch (_: Exception){
+                makeToast(this, R.string.check_perrmision)
+            }
+        }
 }
