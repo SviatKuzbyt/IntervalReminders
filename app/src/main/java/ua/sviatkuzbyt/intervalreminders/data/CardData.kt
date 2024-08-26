@@ -1,4 +1,4 @@
-package ua.sviatkuzbyt.intervalreminders.data.elements
+package ua.sviatkuzbyt.intervalreminders.data
 
 data class CardData(
     val id: Long,

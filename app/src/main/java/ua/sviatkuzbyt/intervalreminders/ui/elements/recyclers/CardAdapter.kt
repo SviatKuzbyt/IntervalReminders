@@ -2,9 +2,9 @@ package ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers
 
 import android.content.Context
 import ua.sviatkuzbyt.intervalreminders.R
-import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
+import ua.sviatkuzbyt.intervalreminders.data.CardData
 import ua.sviatkuzbyt.intervalreminders.ui.elements.ConfirmRemoveDialog
-import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
 
 class CardAdapter(
     dataSet: MutableList<CardData>,

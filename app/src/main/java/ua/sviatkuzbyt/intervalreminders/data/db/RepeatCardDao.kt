@@ -3,7 +3,7 @@ package ua.sviatkuzbyt.intervalreminders.data.db
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
+import ua.sviatkuzbyt.intervalreminders.data.CardData
 
 @Dao
 interface RepeatCardDao{

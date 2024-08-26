@@ -7,23 +7,15 @@ import ua.sviatkuzbyt.intervalreminders.data.db.RepeatEntity
 import ua.sviatkuzbyt.intervalreminders.data.notification.ScheduleNotification
 import java.time.LocalDate
 
-class CardsRepository(private val context: Context)  {
+class CardsRepository(context: Context)  {
     private val dao = DataBaseObject.getDao(context)
     private val scheduleNotification = ScheduleNotification(context)
 
     fun load() = dao.getCards()
 
-    fun remove(cardId: Long){
-        dao.getRepeatsById(cardId).forEach {
-            scheduleNotification.cancel(it.toInt())
-        }
-        dao.removeCard(cardId)
-    }
-
     fun add(name: String): Long{
-        val dao = DataBaseObject.getDao(context)
         val currencyDay = LocalDate.now()
-        val cardId = dao.addCard(CardEntity(0, name))
+        val cardId = dao.addCard(CardEntity(0, name)) //add card to DB
 
         val dates = listOf(
             currencyDay.plusDays(1),
@@ -35,11 +27,21 @@ class CardsRepository(private val context: Context)  {
             currencyDay.plusYears(1)
         )
 
+        //add repeats to DB and notifications
         dates.forEach {
             val id = dao.addRepeat(RepeatEntity(0, it.toEpochDay(), cardId))
             scheduleNotification.add(name, it, id.toInt())
         }
 
         return cardId
+    }
+
+    fun remove(cardId: Long){
+        //cancel notifications
+        dao.getRepeatsById(cardId).forEach {
+            scheduleNotification.cancel(it.toInt())
+        }
+        //remove from DB
+        dao.removeCard(cardId)
     }
 }

@@ -12,7 +12,7 @@ class RepeatRepository(context: Context) {
     fun load() = dao.getRepeats(LocalDate.now().toEpochDay())
 
     fun remove(repeatId: Long){
-        dao.removeRepeat(repeatId)
-        scheduleNotification.cancel(repeatId.toInt())
+        dao.removeRepeat(repeatId) //cancel notifications
+        scheduleNotification.cancel(repeatId.toInt()) //remove from DB
     }
 }

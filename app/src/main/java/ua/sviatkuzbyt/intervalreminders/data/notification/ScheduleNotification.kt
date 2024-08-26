@@ -11,16 +11,28 @@ class ScheduleNotification(private val context: Context) {
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     fun add(message: String, date: LocalDate, id: Int) {
-        val intent = Intent(context, ReminderReceiver::class.java)
-        intent.putExtra("message", message)
-        intent.putExtra("id", id)
+        //create intent for show notification
+        val intent = Intent(context, ReminderReceiver::class.java).apply {
+            putExtra("message", message)
+            putExtra("id", id)
+        }
         val pendingIntent = PendingIntent.getBroadcast(
             context,
             id,
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, convertLocalDateToMillis(date), pendingIntent)
+
+        //schedule a message sending
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP, convertLocalDateToMillis(date), pendingIntent
+        )
+    }
+
+    private fun convertLocalDateToMillis(localDate: LocalDate): Long {
+        val localDateTime = localDate.atTime(10, 0)
+        val instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant()
+        return instant.toEpochMilli()
     }
 
     fun cancel(id: Int) {
@@ -29,11 +41,5 @@ class ScheduleNotification(private val context: Context) {
             context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         alarmManager.cancel(pendingIntent)
-    }
-
-    private fun convertLocalDateToMillis(localDate: LocalDate): Long {
-        val localDateTime = localDate.atTime(10, 0)
-        val instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant()
-        return instant.toEpochMilli()
     }
 }

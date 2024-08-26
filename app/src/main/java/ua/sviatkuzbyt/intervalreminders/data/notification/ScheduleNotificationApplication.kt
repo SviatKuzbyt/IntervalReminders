@@ -6,6 +6,7 @@ import android.app.NotificationManager
 
 class ScheduleNotificationApplication: Application() {
 
+    //create notification channel
     override fun onCreate() {
         super.onCreate()
         val notificationChannel = NotificationChannel(
@@ -17,5 +18,4 @@ class ScheduleNotificationApplication: Application() {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(notificationChannel)
     }
-
 }

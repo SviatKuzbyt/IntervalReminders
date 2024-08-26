@@ -7,8 +7,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ua.sviatkuzbyt.intervalreminders.R
-import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
-import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.data.CardData
+import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
 
 open class RemindAdapter(
     protected val dataSet: MutableList<CardData>,

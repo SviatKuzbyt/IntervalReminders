@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.R
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentRepeatBinding
-import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
 import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.RemindAdapter
 
 class RepeatFragment : Fragment(), RecyclerAction {

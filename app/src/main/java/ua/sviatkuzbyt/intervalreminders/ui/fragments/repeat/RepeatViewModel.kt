@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ua.sviatkuzbyt.intervalreminders.R
-import ua.sviatkuzbyt.intervalreminders.data.elements.CardData
+import ua.sviatkuzbyt.intervalreminders.data.CardData
 import ua.sviatkuzbyt.intervalreminders.data.repositories.RepeatRepository
 import ua.sviatkuzbyt.intervalreminders.ui.elements.SingleLiveEvent
 

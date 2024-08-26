@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ua.sviatkuzbyt.intervalreminders.databinding.FragmentCardsBinding
-import ua.sviatkuzbyt.intervalreminders.ui.elements.interfaces.RecyclerAction
+import ua.sviatkuzbyt.intervalreminders.ui.elements.RecyclerAction
 import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.CardAdapter
 
 class CardsFragment : Fragment(), RecyclerAction {
