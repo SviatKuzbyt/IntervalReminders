@@ -48,7 +48,7 @@ class CardsViewModel(application: Application) : AndroidViewModel(application) {
                 _cards.add(0, CardData(id, name))
                 cards.postValue(_cards)
             }
-            messageAdd.postValue(R.string.add_card)
+            messageAdd.postValue(R.string.saved)
         } catch (_: Exception){
             messageAdd.postValue(R.string.save_error)
         }

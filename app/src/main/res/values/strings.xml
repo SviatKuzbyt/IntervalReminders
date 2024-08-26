@@ -19,4 +19,5 @@
     <string name="no">No</string>
     <string name="no_repeats">Nothing to repeat</string>
     <string name="no_cards">Add new cards</string>
+    <string name="repeat_card">Repeat the card</string>
 </resources>

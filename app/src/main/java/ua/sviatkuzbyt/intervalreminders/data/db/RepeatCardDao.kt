@@ -19,7 +19,7 @@ interface RepeatCardDao{
 
     //REPEAT
     @Insert
-    fun addRepeat(entity: RepeatEntity)
+    fun addRepeat(entity: RepeatEntity): Long
 
     @Query("SELECT r.id, c.name FROM repeat r " +
             "INNER JOIN card c ON c.id = r.cardId " +
