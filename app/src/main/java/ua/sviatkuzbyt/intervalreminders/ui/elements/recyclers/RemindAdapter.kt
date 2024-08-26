@@ -22,6 +22,7 @@ open class RemindAdapter(
     private val EMPTY_VIEW = 0
     private val CONTENT_VIEW = 1
 
+    //for empty list
     inner class EmptyStateViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val emptyItemText = view.findViewById<TextView>(R.id.emptyItemText)
         private val emptyItemIcon = view.findViewById<View>(R.id.emptyItemIcon)
@@ -32,6 +33,7 @@ open class RemindAdapter(
         }
     }
 
+    //items in list
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val text = view.findViewById<TextView>(R.id.recyclerItemText)
         private val removeButton = view.findViewById<Button>(R.id.recyclerItemButton)
@@ -52,30 +54,31 @@ open class RemindAdapter(
         action.removeAction(id)
     }
 
+    //setting the list
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == CONTENT_VIEW){
-            val view = LayoutInflater.from(viewGroup.context)
+            ViewHolder(
+                LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.recycler_item, viewGroup, false)
-            ViewHolder(view)
+            )
         } else {
-            val view = LayoutInflater.from(viewGroup.context)
+            EmptyStateViewHolder(
+                LayoutInflater.from(viewGroup.context)
                 .inflate(R.layout.empty_item, viewGroup, false)
-            EmptyStateViewHolder(view)
+            )
         }
-
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        if(viewHolder is ViewHolder)
-            viewHolder.bind(dataSet[position])
-        else if(viewHolder is EmptyStateViewHolder)
-            viewHolder.bind()
+        if(viewHolder is ViewHolder) viewHolder.bind(dataSet[position])
+        else if(viewHolder is EmptyStateViewHolder) viewHolder.bind()
     }
 
     override fun getItemCount(): Int {
         return if (dataSet.isEmpty()) 1 else dataSet.size
     }
 
+    //determining what kind of ViewHolder should take place
     override fun getItemViewType(position: Int): Int {
         return if (dataSet.isEmpty()) EMPTY_VIEW else CONTENT_VIEW
     }

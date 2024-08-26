@@ -11,8 +11,10 @@ class CardAdapter(
     action: RecyclerAction,
     context: Context
 ): RemindAdapter(dataSet, action) {
+
     private var removePosition = -1
     private var removeId = -1L
+
     private val confirmRemoveDialog = ConfirmRemoveDialog(
         {super.remove(removePosition, removeId)},
         context

@@ -14,10 +14,11 @@ import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.CardAdapter
 
 class CardsFragment : Fragment(), RecyclerAction {
     private lateinit var viewModel: CardsViewModel
-    private var _binding: FragmentCardsBinding? = null
-    private val binding get() = _binding!!
     private lateinit var adapter: CardAdapter
 
+    //set view
+    private var _binding: FragmentCardsBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,12 +50,12 @@ class CardsFragment : Fragment(), RecyclerAction {
         }
     }
 
+    override fun removeAction(id: Long) {
+        viewModel.remove(id)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun removeAction(id: Long) {
-        viewModel.remove(id)
     }
 }

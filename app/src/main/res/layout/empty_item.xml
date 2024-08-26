@@ -20,7 +20,4 @@
         android:text="@string/no_cards"
         android:textAlignment="center"
         android:textAppearance="@style/text_gray" />
-
-
-
 </LinearLayout>

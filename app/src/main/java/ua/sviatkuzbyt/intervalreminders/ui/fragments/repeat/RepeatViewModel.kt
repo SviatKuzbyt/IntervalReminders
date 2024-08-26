@@ -12,10 +12,11 @@ import ua.sviatkuzbyt.intervalreminders.data.repositories.RepeatRepository
 import ua.sviatkuzbyt.intervalreminders.ui.elements.SingleLiveEvent
 
 class RepeatViewModel(application: Application) : AndroidViewModel(application) {
-    private lateinit var _repeatCards: MutableList<CardData>
     val repeatCards = MutableLiveData<MutableList<CardData>>()
-    private val repository = RepeatRepository(application)
     val message = SingleLiveEvent<Int>()
+
+    private lateinit var _repeatCards: MutableList<CardData>
+    private val repository = RepeatRepository(application)
 
     init { load() }
 
@@ -26,7 +27,6 @@ class RepeatViewModel(application: Application) : AndroidViewModel(application) 
         } catch (_: Exception){
             message.postValue(R.string.cant_load)
         }
-
     }
 
     fun remove(id: Long) = viewModelScope.launch(Dispatchers.IO){

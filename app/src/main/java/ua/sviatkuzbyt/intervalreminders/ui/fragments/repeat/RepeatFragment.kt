@@ -16,9 +16,9 @@ import ua.sviatkuzbyt.intervalreminders.ui.elements.recyclers.RemindAdapter
 class RepeatFragment : Fragment(), RecyclerAction {
     private val viewModel: RepeatViewModel by viewModels()
 
+    //set views
     private var _binding: FragmentRepeatBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +43,7 @@ class RepeatFragment : Fragment(), RecyclerAction {
             Toast.makeText(context, getString(it), Toast.LENGTH_SHORT).show()
         }
 
+        //update list
         binding.repeatRefresh.setColorSchemeResources(R.color.blue)
         binding.repeatRefresh.setOnRefreshListener {
             viewModel.load()
@@ -50,12 +51,12 @@ class RepeatFragment : Fragment(), RecyclerAction {
         }
     }
 
+    override fun removeAction(id: Long) {
+        viewModel.remove(id)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun removeAction(id: Long) {
-        viewModel.remove(id)
     }
 }
